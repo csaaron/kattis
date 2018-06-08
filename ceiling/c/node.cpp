@@ -85,7 +85,7 @@ void cs4150::node::add(int number)
     data = number;
     storing_data = true;
     return;
-  }
+  } 
   
   // if number is less than data, add it to left tree
   if (number < data)
@@ -133,6 +133,25 @@ char cs4150::node::get_shape() const
   }
   return shape;
 }
+
+/**
+ * Takes a node and places its shape into shapes in reverse topological order
+ */
+void cs4150::node::get_linearized_shapes(const cs4150::node * graph, std::vector<char> & shapes)
+{
+  if (graph->has_left_child())
+  {
+    get_linearized_shapes(graph->left_child, shapes);
+  }
+  if (graph->has_right_child())
+  {
+    get_linearized_shapes(graph->right_child, shapes);
+  }
+  
+  shapes.push_back(graph->get_shape());
+  return;
+}
+
 
 /**
  * Returns the number of times a node class constructor has been called. Provided to audit

@@ -4,6 +4,7 @@
 # define NODE_H
 
 # include <cstddef>
+# include <vector>
 
 namespace cs4150
 {
@@ -12,6 +13,8 @@ namespace cs4150
    */
   class node
   {
+    friend class binary_tree;    
+    
     private:
       /* pointers to children of this node, if this node has no left or right
        * children, pointers will be NULL */
@@ -85,6 +88,11 @@ namespace cs4150
        * copies the structure of tree into this node
        */ 
       void explore(const node & tree);
+
+      /**
+       * Takes a node and places its shape into shapes in reverse topological order
+       */
+      static void get_linearized_shapes(const node * graph, std::vector<char> & shapes);
   };
 }
 
