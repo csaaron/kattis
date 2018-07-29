@@ -16,7 +16,7 @@ typedef std::map<std::string, std::set<std::string> > adjacency_list;
 
 string_vector linearize_graph(const adjacency_list & graph, const std::string & source);
 
-void explore(const adjacency_list & graph, const std::string & vertice, string_vector & visited,
+void explore(const adjacency_list & graph, const std::string & vertice, std::set<std::string> & visited,
   string_vector & reverse_linearized_dag);
 
 int get_trip_cost(const string_vector & linear_graph, const adjacency_list & reverse_graph,
@@ -102,14 +102,40 @@ int main(int argc, char** argv)
  */
 string_vector linearize_graph(const adjacency_list & graph, const std::string & source)
 {
+  // if graph is empty, return empty vector
+  if (graph.empty())
+  {
+    return string_vector();
+  }
 
+  // create a set for the visited vertice
+  std::set<std::string> visited;
+  // create storage for for a linearized dag
+  string_vector reverse_linearized_dag;
+
+  // explore from source
+  explore(graph, source, visited, reverse_linearized_dag);
+  
+  // reverse the graph 
+  string_vector linearized_dag(reverse_linearized_dag.size());
+
+
+  string_vector::reverse_iterator it = reverse_linearized_dag.rbegin();
+  string_vector::reverse_iterator end = reverse_linearized_dag.rend();
+  
+  for (it; it != end; it++)
+  {
+    linearized_dag.push_back(*it);
+  }
+
+  return linearized_dag;
 }
 
 /**
  * Recursively explores all unexplored edges leading from vertice and places discovered vertices
  * into reverse_linearized_dag in reverse topological order.
  */
-void explore(const adjacency_list & graph, const std::string & vertice, string_vector & visited,
+void explore(const adjacency_list & graph, const std::string & vertice, std::set<std::string> & visited,
   string_vector & reverse_linearized_dag)
 {
 
