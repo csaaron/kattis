@@ -126,7 +126,7 @@ string_vector linearize_graph(const adjacency_list & graph, const std::string & 
   explore(graph, source, visited, reverse_linearized_dag);
   
   // reverse the graph 
-  string_vector linearized_dag(reverse_linearized_dag.size());
+  string_vector linearized_dag;
 
 
   string_vector::reverse_iterator it = reverse_linearized_dag.rbegin();
@@ -204,6 +204,7 @@ int get_trip_cost(const string_vector & linear_graph, const adjacency_list & rev
   // calculate cost
   string_vector::const_iterator it = linear_graph.begin();
   string_vector::const_iterator end = linear_graph.end();
+  it++;
   for (it; it != end; it++)
   {
     std::string city = *it;
@@ -259,7 +260,7 @@ int get_lowest_cost_source(const string_set & sources, const string_int_map & co
   string_set::const_iterator end = sources.end();
   for (it; it != end; it++)
   {
-    if (cost_map.count(*it) && cost_map.at(*it) < source_cost)
+    if (cost_map.count(*it) > 0 && cost_map.at(*it) < source_cost)
     {
       source_cost = cost_map.at(*it);
     }
