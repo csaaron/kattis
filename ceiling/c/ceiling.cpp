@@ -35,7 +35,7 @@ int main(int argc, char** argv)
     bool matches_shape = false;
     for (it; it != end; it++)
     {
-      if (tree->compare_shape(**it))
+      if (tree->compare_shape_recursive(**it))
       {
         matches_shape = true;
         break;
