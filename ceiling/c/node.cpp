@@ -42,7 +42,7 @@ cs4150::node & cs4150::node::operator= (const cs4150::node & rhs)
   // release resources used by this object
   clean();
   
-  explore(rhs); 
+  add_node(rhs); 
   
   // always return *this for assignment operator
   return *this;
@@ -195,16 +195,16 @@ void cs4150::node::clean()
 /**
  * copies the contents of tree into this node
  */ 
-void cs4150::node::explore(const cs4150::node & tree)
+void cs4150::node::add_node(const cs4150::node & tree)
 {
   add(tree.data);
   
   if (tree.has_left_child())
   {
-    explore(*(tree.left_child)); 
+    add_node(*(tree.left_child)); 
   }
   if (tree.has_right_child())
   {
-    explore(*(tree.right_child));
+    add_node(*(tree.right_child));
   }
 }

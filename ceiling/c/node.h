@@ -87,7 +87,7 @@ namespace cs4150
       /**
        * copies the structure of tree into this node
        */ 
-      void explore(const node & tree);
+      void add_node(const node & tree);
 
       /**
        * Takes a node and places its shape into shapes in reverse topological order
