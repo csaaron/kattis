@@ -105,6 +105,46 @@ bool cs4150::binary_tree::compare_shape(const cs4150::binary_tree & other) const
  */
 bool cs4150::binary_tree::compare_shape_recursive(const cs4150::binary_tree & other) const
 {
+  if (this->size != other.size)
+  {
+    return false;
+  }
+
+  cs4150::node * lhs_node = root;
+  cs4150::node * rhs_node = other.root;
+
+  return cs4150::binary_tree::compare_nodes_recursive(lhs_node, rhs_node);
+}
+
+/**
+ * Compares the shape of node and subtree to the shape of other node and subtree.
+ * Returns true if their shapes are the same, else returns false
+ */
+bool cs4150::binary_tree::compare_nodes_recursive(const cs4150::node * this_tree, const cs4150::node * other_tree)
+{
+  // base case for recursion. If both are null shape is the same
+  if (!this_tree && !other_tree)
+  {
+    return true;
+  }
+  // if only one is null shape is different
+  else if (!this_tree || !other_tree)
+  {
+    return false;
+  }
+  
+  // if this shape is not the same as the other, return false
+  if (this_tree->get_shape() != other_tree->get_shape())
+  {
+    return false;
+  }
+  // if shapes are same, continue down the left path on both sub trees, 
+  // then follow down the right tree.
+  else
+  {
+    return compare_nodes_recursive(&(this_tree->get_left_child()), &(other_tree->get_left_child())) &&
+      compare_nodes_recursive(&(this_tree->get_right_child()), &(other_tree->get_right_child()));
+  }
 
 }
 

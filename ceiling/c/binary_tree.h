@@ -51,6 +51,13 @@ namespace cs4150
        */
       bool compare_shape_recursive(const binary_tree & other) const;
     private:
+      
+      /**
+       * Compares the shape of node and subtree to the shape of other node and subtree. 
+       * Returns true if their shapes are the same, else returns false
+       */
+      static bool compare_nodes_recursive(const node * this_tree, const node * other_tree);
+      
       /**
        * Ensures resources used by this object are released. Essentially destroys this object
        */
