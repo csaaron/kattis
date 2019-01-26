@@ -51,6 +51,16 @@ namespace cs4150
        * Returns true if this node has a left child, else returns false
        */
       bool has_left_child() const;
+
+      /**
+       * returns a reference to the left child of this node. Child may be NULL
+       */
+      const node & get_left_child() const;
+
+      /**
+       * returns a reference to the right child of this node. Child may be NULL
+       */
+      const node & get_right_child() const;
       
       /**
        * If this node is not storing data, stores number as its data. If node is storing data

@@ -73,6 +73,22 @@ bool cs4150::node::has_left_child() const
 }
 
 /**
+ * returns a reference to the left child of this node. Childe may be NULL
+ */
+const cs4150::node & cs4150::node::get_left_child() const
+{
+  return *left_child;
+}
+
+/**
+ * returns a reference to the right child of this node. Child may be NULL
+ */
+const cs4150::node & cs4150::node::get_right_child() const
+{
+  return *right_child;
+}
+
+/**
  * If this node is not storing data, stores number as its data. If node is storing data
  * adds its data to the tree contained in its left or right child.
  */
