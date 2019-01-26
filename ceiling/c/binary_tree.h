@@ -44,6 +44,12 @@ namespace cs4150
        * are the same, else returns false
        */
       bool compare_shape(const binary_tree & other) const;
+
+      /**
+       * Compares the shape of this binary_tree to the shape of other. Returns true if their shapes
+       * are the same, else returns false
+       */
+      bool compare_shape_recursive(const binary_tree & other) const;
     private:
       /**
        * Ensures resources used by this object are released. Essentially destroys this object

@@ -100,6 +100,15 @@ bool cs4150::binary_tree::compare_shape(const cs4150::binary_tree & other) const
 }
 
 /**
+ * Compares the shape of this binary_tree to the shape of other. Returns true if their shapes
+ * are the same, else returns false
+ */
+bool cs4150::binary_tree::compare_shape_recursive(const cs4150::binary_tree & other) const
+{
+
+}
+
+/**
  * Ensures resources used by this object are released. Essentially destroys this object
  */
 void cs4150::binary_tree::clean()
